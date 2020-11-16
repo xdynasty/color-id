@@ -2,11 +2,15 @@
   "manifest_version": 2,
   "name": "colorID",
   "version": "1.0.0",
-  "description": "identity pixel color in the viewport",
+  "description": "Identity color of a pixel in the viewport",
   "icons": {
     "16": "eyedropper.png",
     "48": "eyedropper.png",
     "128": "eyedropper.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
   },
   "permissions": ["activeTab"],
   "browser_action": {

@@ -80,6 +80,15 @@ eyedropperBtn.addEventListener('click', () => {
             ctx.stroke();
         };
 
+        document.onkeydown = (event) => {
+          console.log("pressed key");
+          console.log("event:", event);
+          if (event.key === "Escape") {
+            document.body.removeChild(canvas);
+            document.body.removeChild(colorContainer);
+          }
+        }
+
         function componentToHex(c) {
           var hex = c.toString(16).toUpperCase();
           return hex.length == 1 ? "0" + hex : hex;
@@ -95,8 +104,6 @@ eyedropperBtn.addEventListener('click', () => {
           rgbaTextInput.value = rgba;
           hexTextInput.value = "#" + componentToHex(data[0]) + componentToHex(data[1]) + componentToHex(data[2])
         }
-
-
 
         canvas.addEventListener('click', (event) => {
           pick(event);
@@ -114,7 +121,7 @@ eyedropperBtn.addEventListener('click', () => {
           if (y + 225 < window.innerHeight) {
             colorContainer.style.top = event.pageY+ "px";
           } else {
-            colorContainer.style.top = event.pageY - 225 + "px";
+            colorContainer.style.top = event.pageY - 250 + "px";
           }
 
           zoom(zoomCtx, x, y);
