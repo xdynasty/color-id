@@ -22,38 +22,47 @@ eyedropperBtn.addEventListener('click', () => {
           context.drawImage(img, 0, 0, window.innerWidth, window.innerHeight)
         }
         document.body.appendChild(canvas);
+
+        const colorContainer = document.createElement("div");
+        colorContainer.id = "colorContainer";
+        colorContainer.style.position = "absolute";
+        colorContainer.style.zIndex = "99999";
+        colorContainer.style.pointerEvents = "none";
+        colorContainer.style.display = "flex";
+        colorContainer.style.alignItems = "center";
+        colorContainer.style.flexDirection = "column";
+
+        const rgbaTextInput = document.createElement("input");
+        rgbaTextInput.id = "rgbaTextInput";
+        rgbaTextInput.readonly = true;
+
         const zoomCanvas = document.createElement('canvas');
         zoomCanvas.id = "zoomCanvas";
-        zoomCanvas.style.position = "absolute";
-
-        zoomCanvas.style.zIndex = "99999";
-        zoomCanvas.style.pointerEvents = "none";
+        colorContainer.appendChild(zoomCanvas);
+        colorContainer.appendChild(rgbaTextInput);
         const zoomCtx = zoomCanvas.getContext('2d');
-        zoomCtx.canvas.width = 200;
-        zoomCtx.canvas.height = 200;
+        zoomCtx.canvas.width = 175;
+        zoomCtx.canvas.height = 175;
         zoomCtx.imageSmoothingEnabled = false;
         zoomCtx.mozImageSmoothingEnabled = false;
         zoomCtx.webkitImageSmoothingEnabled = false;
         zoomCtx.msImageSmoothingEnabled = false;
-        document.body.appendChild(zoomCanvas)
+        document.body.appendChild(colorContainer)
 
         function zoom(ctx, x, y) {
-          console.log("drawing")
           ctx.drawImage(canvas,
             Math.min(Math.max(0, x - 3), img.width - 3),
             Math.min(Math.max(0, y - 3), img.height - 3),
-            11, 11,
+            5, 5,
             0, 0,
             175, 175);
         };
 
-
-
         canvas.addEventListener('mousemove', function(event) {
           const x = event.layerX;
           const y = event.layerY;
-          zoomCanvas.style.left = event.pageX + "px";
-          zoomCanvas.style.top = event.pageY+ "px";
+          colorContainer.style.left = event.pageX + "px";
+          colorContainer.style.top = event.pageY+ "px";
           zoom(zoomCtx, x, y);
         });
 
@@ -62,5 +71,3 @@ eyedropperBtn.addEventListener('click', () => {
     }
   );
 });
-
-// const p = document.createElement('p'); p.innerHTML = ${dataUrl}; document.body.appendChild(p); console.log(${dataUrl})
