@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "colorID",
+  "version": "1.0.0",
+  "description": "identity pixel color in the viewport",
+  "icons": {
+    "16": "eyedropper.png",
+    "48": "eyedropper.png",
+    "128": "eyedropper.png"
+  },
+  "permissions": ["activeTab"],
+  "browser_action": {
+    "default_icon": {
+      "16": "eyedropper.png",
+      "24": "eyedropper.png",
+      "32": "eyedropper.png"
+    },
+    "default_title": "ColorID",
+    "default_popup": "popup.html"
+  }
+}
