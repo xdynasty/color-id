@@ -25,8 +25,7 @@ eyedropperBtn.addEventListener('click', () => {
         const zoomCanvas = document.createElement('canvas');
         zoomCanvas.id = "zoomCanvas";
         zoomCanvas.style.position = "absolute";
-        zoomCanvas.style.top = 0;
-        zoomCanvas.style.left = 0;
+
         zoomCanvas.style.zIndex = "99999";
         const zoomCtx = zoomCanvas.getContext('2d');
         zoomCtx.canvas.width = 200;
@@ -47,12 +46,18 @@ eyedropperBtn.addEventListener('click', () => {
             200, 200);
         };
 
+
         canvas.addEventListener('mousemove', function(event) {
           const x = event.layerX;
           const y = event.layerY;
           console.log("x", x);
           console.log("y", y);
+          zoomCanvas.style.left = event.pageX + "px";
+          zoomCanvas.style.top = event.pageY + "px";
+          console.log("event.pageX:", event.pageX);
+          console.log("event.pageY:", event.pageY);
           zoom(zoomCtx, x, y);
+
         });
 
         `,
