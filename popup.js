@@ -57,6 +57,22 @@ eyedropperBtn.addEventListener('click', () => {
             5, 5,
             0, 0,
             175, 175);
+            ctx.beginPath();
+            ctx.moveTo(70,0);
+            ctx.lineTo(70,175);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(105, 0);
+            ctx.lineTo(105, 175);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, 70);
+            ctx.lineTo(175, 70);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, 105);
+            ctx.lineTo(175, 105);
+            ctx.stroke();
         };
 
         function pick(event) {
