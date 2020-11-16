@@ -27,6 +27,7 @@ eyedropperBtn.addEventListener('click', () => {
         zoomCanvas.style.position = "absolute";
 
         zoomCanvas.style.zIndex = "99999";
+        zoomCanvas.style.pointerEvents = "none";
         const zoomCtx = zoomCanvas.getContext('2d');
         zoomCtx.canvas.width = 200;
         zoomCtx.canvas.height = 200;
@@ -52,8 +53,6 @@ eyedropperBtn.addEventListener('click', () => {
           const y = event.layerY;
           console.log("x", x);
           console.log("y", y);
-          zoomCanvas.style.left = event.pageX + "px";
-          zoomCanvas.style.top = event.pageY + "px";
           console.log("event.pageX:", event.pageX);
           console.log("event.pageY:", event.pageY);
           zoom(zoomCtx, x, y);
