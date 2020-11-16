@@ -26,6 +26,7 @@ eyedropperBtn.addEventListener('click', () => {
         const colorContainer = document.createElement("div");
         colorContainer.id = "colorContainer";
         colorContainer.style.position = "absolute";
+        colorContainer.style.padding = "8px";
         colorContainer.style.zIndex = "99999";
         colorContainer.style.pointerEvents = "none";
         colorContainer.style.display = "flex";
@@ -57,6 +58,22 @@ eyedropperBtn.addEventListener('click', () => {
             0, 0,
             175, 175);
         };
+
+        function pick(event) {
+          var x = event.layerX;
+          var y = event.layerY;
+          var pixel = context.getImageData(x, y, 1, 1);
+          var data = pixel.data;
+          console.log("data:", data);
+          const rgba = "rgba(" + data[0] + ', ' + data[1] + ", " + data[2] + ", " + data[3] / 255 + ")";
+          console.log("rgba:", rgba);
+          colorContainer.style.backgroundColor = rgba;
+          rgbaTextInput.value = rgba;
+        }
+
+        canvas.addEventListener('click', (event) => {
+          pick(event);
+        })
 
         canvas.addEventListener('mousemove', function(event) {
           const x = event.layerX;
