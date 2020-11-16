@@ -44,19 +44,17 @@ eyedropperBtn.addEventListener('click', () => {
             Math.min(Math.max(0, y - 3), img.height - 3),
             11, 11,
             0, 0,
-            200, 200);
+            175, 175);
         };
+
 
 
         canvas.addEventListener('mousemove', function(event) {
           const x = event.layerX;
           const y = event.layerY;
-          console.log("x", x);
-          console.log("y", y);
-          console.log("event.pageX:", event.pageX);
-          console.log("event.pageY:", event.pageY);
+          zoomCanvas.style.left = event.pageX + "px";
+          zoomCanvas.style.top = event.pageY+ "px";
           zoom(zoomCtx, x, y);
-
         });
 
         `,
