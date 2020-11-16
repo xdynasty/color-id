@@ -105,11 +105,15 @@ eyedropperBtn.addEventListener('click', () => {
         canvas.addEventListener('mousemove', function(event) {
           const x = event.layerX;
           const y = event.layerY;
-          if (x + 200 < window.innerWidth && y + 200 < window.innerHeight) {
+          if (x + 200 < window.innerWidth) {
             colorContainer.style.left = event.pageX + "px";
-            colorContainer.style.top = event.pageY+ "px";
           } else {
             colorContainer.style.left = event.pageX - 200 + "px";
+          }
+
+          if (y + 225 < window.innerHeight) {
+            colorContainer.style.top = event.pageY+ "px";
+          } else {
             colorContainer.style.top = event.pageY - 225 + "px";
           }
 
