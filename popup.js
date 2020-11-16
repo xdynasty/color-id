@@ -37,10 +37,15 @@ eyedropperBtn.addEventListener('click', () => {
         rgbaTextInput.id = "rgbaTextInput";
         rgbaTextInput.readonly = true;
 
+        const hexTextInput = document.createElement("input");
+        hexTextInput.id = "hexTextInput";
+        hexTextInput.readonly = true;
+
         const zoomCanvas = document.createElement('canvas');
         zoomCanvas.id = "zoomCanvas";
         colorContainer.appendChild(zoomCanvas);
         colorContainer.appendChild(rgbaTextInput);
+        colorContainer.appendChild(hexTextInput);
         const zoomCtx = zoomCanvas.getContext('2d');
         zoomCtx.canvas.width = 175;
         zoomCtx.canvas.height = 175;
@@ -75,16 +80,23 @@ eyedropperBtn.addEventListener('click', () => {
             ctx.stroke();
         };
 
+        function componentToHex(c) {
+          var hex = c.toString(16).toUpperCase();
+          return hex.length == 1 ? "0" + hex : hex;
+        }
+
         function pick(event) {
           var x = event.layerX;
           var y = event.layerY;
           var pixel = context.getImageData(x-1, y-1, 1, 1);
           var data = pixel.data;
           const rgba = "rgba(" + data[0] + ', ' + data[1] + ", " + data[2] + ", " + data[3] / 255 + ")";
-          console.log("rgba:", rgba);
           colorContainer.style.backgroundColor = rgba;
           rgbaTextInput.value = rgba;
+          hexTextInput.value = "#" + componentToHex(data[0]) + componentToHex(data[1]) + componentToHex(data[2])
         }
+
+
 
         canvas.addEventListener('click', (event) => {
           pick(event);
