@@ -62,8 +62,6 @@ eyedropperBtn.addEventListener('click', () => {
         function pick(event) {
           var x = event.layerX;
           var y = event.layerY;
-          console.log("x:", x);
-          console.log("y:", y);
           var pixel = context.getImageData(x-1, y-1, 1, 1);
           var data = pixel.data;
           const rgba = "rgba(" + data[0] + ', ' + data[1] + ", " + data[2] + ", " + data[3] / 255 + ")";
@@ -79,8 +77,6 @@ eyedropperBtn.addEventListener('click', () => {
         canvas.addEventListener('mousemove', function(event) {
           const x = event.layerX;
           const y = event.layerY;
-          console.log("x:", x);
-          console.log("y:", y);
           colorContainer.style.left = event.pageX + "px";
           colorContainer.style.top = event.pageY+ "px";
           zoom(zoomCtx, x, y);
