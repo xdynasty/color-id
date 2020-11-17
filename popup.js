@@ -54,7 +54,9 @@ eyedropperBtn.addEventListener('click', () => {
         zoomCtx.mozImageSmoothingEnabled = false;
         zoomCtx.webkitImageSmoothingEnabled = false;
         zoomCtx.msImageSmoothingEnabled = false;
-        document.body.appendChild(colorContainer)
+        document.body.addEventListener("mouseenter", () => {
+          document.body.appendChild(colorContainer)
+        })
 
         function zoom(ctx, x, y) {
           ctx.drawImage(canvas,
