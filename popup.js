@@ -10,7 +10,7 @@ eyedropperBtn.addEventListener('click', () => {
         canvas = document.createElement('canvas');
         canvas.id = 'canvas';
         canvas.style.position = "absolute";
-        canvas.style.top = 0;
+        canvas.style.top = document.body.scrollTop;
         canvas.style.left = 0;
         canvas.style.zIndex = "99999";
         context = canvas.getContext('2d');
@@ -111,14 +111,14 @@ eyedropperBtn.addEventListener('click', () => {
         canvas.addEventListener('mousemove', function(event) {
           const x = event.layerX;
           const y = event.layerY;
-          if (x + 200 < window.innerWidth) {
-            colorContainer.style.left = event.pageX + "px";
+          if (x + 220 < window.innerWidth) {
+            colorContainer.style.left = event.pageX + 20 + "px";
           } else {
             colorContainer.style.left = event.pageX - 200 + "px";
           }
 
-          if (y + 225 < window.innerHeight) {
-            colorContainer.style.top = event.pageY+ "px";
+          if (y + 260 < window.innerHeight) {
+            colorContainer.style.top = event.pageY + 20 + "px";
           } else {
             colorContainer.style.top = event.pageY - 250 + "px";
           }
