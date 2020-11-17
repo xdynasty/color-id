@@ -8,10 +8,6 @@
     "48": "eyedropper.png",
     "128": "eyedropper.png"
   },
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
   "permissions": ["activeTab"],
   "browser_action": {
     "default_icon": {
