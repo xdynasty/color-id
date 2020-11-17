@@ -7,23 +7,23 @@ eyedropperBtn.addEventListener('click', () => {
     (dataUrl) => {
       chrome.tabs.executeScript({
         code: `
-        const canvas = document.createElement('canvas');
+        canvas = document.createElement('canvas');
         canvas.id = 'canvas';
         canvas.style.position = "absolute";
         canvas.style.top = 0;
         canvas.style.left = 0;
         canvas.style.zIndex = "99999";
-        const context = canvas.getContext('2d');
+        context = canvas.getContext('2d');
         context.canvas.width = window.innerWidth;
         context.canvas.height = window.innerHeight;
-        const img = new Image();
+        img = new Image();
         img.src = "${dataUrl}";
         img.onload = () => {
           context.drawImage(img, 0, 0, window.innerWidth, window.innerHeight)
         }
         document.body.appendChild(canvas);
 
-        const colorContainer = document.createElement("div");
+        colorContainer = document.createElement("div");
         colorContainer.id = "colorContainer";
         colorContainer.style.position = "absolute";
         colorContainer.style.padding = "8px";
@@ -33,20 +33,21 @@ eyedropperBtn.addEventListener('click', () => {
         colorContainer.style.alignItems = "center";
         colorContainer.style.flexDirection = "column";
 
-        const rgbaTextInput = document.createElement("input");
+        rgbaTextInput = document.createElement("input");
         rgbaTextInput.id = "rgbaTextInput";
         rgbaTextInput.readonly = true;
 
-        const hexTextInput = document.createElement("input");
+        hexTextInput = document.createElement("input");
         hexTextInput.id = "hexTextInput";
         hexTextInput.readonly = true;
 
-        const zoomCanvas = document.createElement('canvas');
+        zoomCanvas = document.createElement('canvas');
         zoomCanvas.id = "zoomCanvas";
         colorContainer.appendChild(zoomCanvas);
         colorContainer.appendChild(rgbaTextInput);
         colorContainer.appendChild(hexTextInput);
-        const zoomCtx = zoomCanvas.getContext('2d');
+
+        zoomCtx = zoomCanvas.getContext('2d');
         zoomCtx.canvas.width = 175;
         zoomCtx.canvas.height = 175;
         zoomCtx.imageSmoothingEnabled = false;
@@ -81,8 +82,6 @@ eyedropperBtn.addEventListener('click', () => {
         };
 
         document.onkeydown = (event) => {
-          console.log("pressed key");
-          console.log("event:", event);
           if (event.key === "Escape") {
             document.body.removeChild(canvas);
             document.body.removeChild(colorContainer);
