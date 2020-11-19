@@ -54,8 +54,12 @@ eyedropperBtn.addEventListener('click', () => {
         zoomCtx.mozImageSmoothingEnabled = false;
         zoomCtx.webkitImageSmoothingEnabled = false;
         zoomCtx.msImageSmoothingEnabled = false;
-        document.body.addEventListener("mouseenter", () => {
+        canvas.addEventListener("mouseenter", () => {
           document.body.appendChild(colorContainer)
+        })
+
+        canvas.addEventListener("mouseleave", () => {
+          document.body.removeChild(colorContainer);
         })
 
         function zoom(ctx, x, y) {
@@ -85,8 +89,8 @@ eyedropperBtn.addEventListener('click', () => {
 
         document.onkeydown = (event) => {
           if (event.key === "Escape") {
-            document.body.removeChild(canvas);
             document.body.removeChild(colorContainer);
+            document.body.removeChild(canvas);
           }
         }
 
