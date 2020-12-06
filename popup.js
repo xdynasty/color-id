@@ -10,12 +10,19 @@ eyedropperBtn.addEventListener('click', () => {
         canvas = document.createElement('canvas');
         canvas.id = 'canvas';
         canvas.style.position = "absolute";
-        canvas.style.top = document.body.scrollTop;
+        scrollHeight = document.documentElement.scrollTop || document.body.scrollTop;
+        canvas.style.top = scrollHeight;
+        console.log("scrollHeight:", scrollHeight);
         canvas.style.left = 0;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        canvas.innerHeight = window.innerHeight;
         canvas.style.zIndex = "99999";
         context = canvas.getContext('2d');
         context.canvas.width = window.innerWidth;
         context.canvas.height = window.innerHeight;
+        dpr = window.devicePixelRatio || 1;
+        // context.scale(dpr, dpr);
         img = new Image();
         img.src = "${dataUrl}";
         img.onload = () => {
@@ -48,8 +55,11 @@ eyedropperBtn.addEventListener('click', () => {
         colorContainer.appendChild(hexTextInput);
 
         zoomCtx = zoomCanvas.getContext('2d');
-        zoomCtx.canvas.width = 175;
-        zoomCtx.canvas.height = 175;
+        zoomCanvas.style.width = "175px";
+        zoomCanvas.style.height = "175px";
+        zoomCtx.canvas.width = 175 * 2;
+        zoomCtx.canvas.height = 175 * 2;
+        zoomCtx.scale(dpr, dpr);
         zoomCtx.imageSmoothingEnabled = false;
         zoomCtx.mozImageSmoothingEnabled = false;
         zoomCtx.webkitImageSmoothingEnabled = false;
